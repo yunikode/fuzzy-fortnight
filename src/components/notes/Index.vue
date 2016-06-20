@@ -4,6 +4,7 @@
       v-for="note in notes"
       track-by="$index"
       :note="note"
+      v-on:click="selectNote(note)"
       >
     </note>
   </div>
@@ -41,7 +42,11 @@ export default {
     })
   },
   attached () {},
-  methods: {},
+  methods: {
+    selectNote ({key, title, content}) {
+      this.$dispatch('note.selected', {key, title, content})
+    }
+  },
   components: {
     Note
   },
